@@ -42,8 +42,12 @@ const Sidebar = () => {
         <span>Orders</span>
       </li>
       <li>
-      <CategoryIcon className="icon" />
-        <span>Categories</span>
+      <Link to="/categories">
+        <li>
+        <CategoryIcon className="icon" />   
+          <span>Categories</span>
+        </li>
+      </Link>
       </li>
       <p className="title">USER</p>
       <li>
