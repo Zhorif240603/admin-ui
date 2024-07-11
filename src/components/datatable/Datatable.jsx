@@ -18,7 +18,7 @@ const columns = [
     description: "This column has a value getter and is not sortable.",
     sortable: false,
     width: 160,
-    valueGetter: (value, row) => `${row.firstName || ""} ${row.lastName || ""}`,
+    valueGetter: (params) => `${params.row.firstName || ""} ${params.row.lastName || ""}`,
   },
 ];
 
@@ -56,11 +56,12 @@ const Datatable = () => {
     <div className="datatable">
       <div className="datatableTitle">
         Users
-        <Link to="/users/new" style={{ textDecoration: "none" }}>
+        <Link to="/users/new" className="link">
           Add New
         </Link>
       </div>
       <DataGrid
+        className="datagrid"
         rows={rows}
         columns={columns.concat(actionColumn)}
         initialState={{
