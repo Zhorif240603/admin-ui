@@ -1,5 +1,6 @@
 .datatable {
   padding: 20px;
+
   .datatableTitle {
     width: 100%;
     font-size: 24px;
@@ -8,6 +9,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     .link {
       text-decoration: none;
       color: green;
@@ -19,7 +21,7 @@
       cursor: pointer;
     }
   }
-
+  
   .cellAction {
     display: flex;
     align-items: center;

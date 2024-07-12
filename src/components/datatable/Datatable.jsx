@@ -18,7 +18,7 @@ const columns = [
     description: "This column has a value getter and is not sortable.",
     sortable: false,
     width: 160,
-    valueGetter: (params) => `${params.row.firstName || ""} ${params.row.lastName || ""}`,
+    valueGetter: (value, row) => `${row.firstName || ""} ${row.lastName || ""}`,
   },
 ];
 
@@ -43,7 +43,7 @@ const actionColumn = [
       return (
         <div className="cellAction">
           <Link to="/users/test" style={{ textDecoration: "none" }}>
-            <div className="viewButton">View</div>
+            <span className="viewButton">View</span>
           </Link>
         </div>
       );
@@ -56,12 +56,11 @@ const Datatable = () => {
     <div className="datatable">
       <div className="datatableTitle">
         Users
-        <Link to="/users/new" className="link">
+        <Link to="/users/new" style={{ textDecoration: "none" }}>
           Add New
         </Link>
       </div>
-      <DataGrid
-        className="datagrid"
+      <DataGrid className="datagrid"
         rows={rows}
         columns={columns.concat(actionColumn)}
         initialState={{
