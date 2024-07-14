@@ -23,9 +23,12 @@ describe('template spec', () => {
   .should('be.visible') 
 
 cy.get('[data-testid="users"]').click()
-
 cy.url().should('include', '/users')
-
 cy.get('div.datatableTitle').contains('USERS')
+
+
+
+
+
   })
 })
