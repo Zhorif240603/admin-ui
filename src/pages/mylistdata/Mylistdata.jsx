@@ -14,9 +14,9 @@ const Mylistdata = () => {
         <Navbar/>
           <div className="widget">
           <Widget type="user"/>
-          <Widget type="order"/>
-          <Widget type="earning"/>
-         <Widget type="balance"/>
+          <Widget type="product"/>
+          <Widget type="category"/>
+         
       </div>
       <div className="mydatatable"></div>
       <Mydatatable />

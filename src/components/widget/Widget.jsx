@@ -1,19 +1,18 @@
 import "./widget.scss";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
-import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
-import { KeyboardArrowDownicon } from "@mui/icons-material/KeyboardArrowDown";
-import { useEffect,useState } from "react";
-import { collection, query, where,getDocs } from "firebase/firestore";
+import { KeyboardArrowDown } from "@mui/icons-material"; 
+import { useEffect, useState } from "react";
+import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../../firebase";
 
 const Widget = ({ type }) => {
   let data;
 
-const[amount,setAmount]= useState(null);
-const[diff,setDiff]= useState(null);
+  const [amount, setAmount] = useState(null);
+  const [diff, setDiff] = useState(null);
 
   switch (type) {
     case "user":
@@ -33,12 +32,12 @@ const[diff,setDiff]= useState(null);
         ),
       };
       break;
-    case "order":
+    case "product":
       data = {
-        title: "ORDERS",
+        title: "PRODUCTS",
         isMoney: false,
-        link: "View all orders",
-        query: "users",
+        link: "View all products",
+        query: "products", 
         icon: (
           <ShoppingCartOutlinedIcon
             className="icon"
@@ -50,33 +49,16 @@ const[diff,setDiff]= useState(null);
         ),
       };
       break;
-    case "earning":
+    case "category":
       data = {
-        title: "EARNINGS",
-        isMoney: true,
-        link: "View net earnings",
-        query: "users",
+        title: "CATEGORIES",
+        isMoney: false,
+        link: "View all categories",
+        query: "categories", 
         icon: (
           <MonetizationOnOutlinedIcon
             className="icon"
             style={{ backgroundColor: "rgba(0, 128, 0, 0.2)", color: "green" }}
-          />
-        ),
-      };
-      break;
-    case "balance":
-      data = {
-        title: "BALANCE",
-        isMoney: true,
-        link: "See details",
-        query: "users",
-        icon: (
-          <AccountBalanceWalletOutlinedIcon
-            className="icon"
-            style={{
-              backgroundColor: "rgba(128, 0, 128, 0.2)",
-              color: "purple",
-            }}
           />
         ),
       };
@@ -103,20 +85,21 @@ const[diff,setDiff]= useState(null);
       );
 
       const lastMonthData = await getDocs(lastMonthQuery);
-      const prevMonthData = await getDocs(prevMonthQuery); 
+      const prevMonthData = await getDocs(prevMonthQuery);
 
       setAmount(lastMonthData.docs.length);
       setDiff(100);
 
-      if(prevMonthData.docs.length > 0){
+      if (prevMonthData.docs.length > 0) {
         setDiff(
-          ((lastMonthData.docs.length - prevMonthData.docs.length) / prevMonthData.docs.length) *
+          ((lastMonthData.docs.length - prevMonthData.docs.length) /
+            prevMonthData.docs.length) *
             100
         );
-      } 
+      }
     };
     fetchData();
-  }, []);
+  }, [data.query]); 
 
   return (
     <div className="widget">
@@ -128,12 +111,12 @@ const[diff,setDiff]= useState(null);
         <div className="link">{data.link}</div>
       </div>
       <div className="right">
-  <div className={`percentage ${diff < 0 ? "negative" : "positive"}`}>
-    {diff < 0 ? <KeyboardArrowDownicon/> : <KeyboardArrowUpIcon/> }
-    {diff} %
-  </div>
-  {data.icon}
-</div>
+        <div className={`percentage ${diff < 0 ? "negative" : "positive"}`}>
+          {diff < 0 ? <KeyboardArrowDown /> : <KeyboardArrowUpIcon />}
+          {diff} %
+        </div>
+        {data.icon}
+      </div>
     </div>
   );
 };

@@ -4,7 +4,7 @@ import Login from "./pages/login/Login";
 import List from "./pages/list/List";
 import Single from "./pages/single/Single";
 import Newdata from "./pages/newdata/Newdata";
-import { productInputs, userInputs} from "./formsource";
+import { productInputs, userInputs,categoriesInputs} from "./formsource";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Mylistdata from "./pages/mylistdata/Mylistdata";
 import "./style/dark.scss";
@@ -51,8 +51,15 @@ function App() {
               />
             </Route>
             <Route path="categories">
-              <Route index element={<RequireAuth><Mylistdata /></RequireAuth>}></Route>
+              <Route index element={<RequireAuth><Mylistdata columns={productColumns}/></RequireAuth>}></Route>
+              <Route path=":categoriesId" element={<RequireAuth><Single columns={productColumns}/></RequireAuth>}></Route>
+              <Route
+                path="new"
+                element={<RequireAuth><Newdata inputs={categoriesInputs} title="Add New Categories" /></RequireAuth>}
+              />
+
             </Route>
+
           </Route>
         </Routes>
       </BrowserRouter>
