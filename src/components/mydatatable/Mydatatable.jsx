@@ -47,6 +47,7 @@ const Mydatatable = () => {
           <div className="cellAction">
             <span
               className="deleteButton"
+              data-testid="deleteButton" 
               onClick={() => handleDelete(params.row.id)}
             >
               Delete
@@ -66,9 +67,7 @@ const Mydatatable = () => {
     <div className="mydatatable">
       <div className="datatableTitle">
         CATEGORIES
-        <Link to="/categories/new" className="link"> {/* Sesuaikan dengan rute Anda */}
-          Add New
-        </Link>
+        <Link to="/categories/new" className="link" data-testid="add-new">Add New</Link>
       </div>
       <DataGrid
         className="datagrid"
@@ -86,4 +85,4 @@ const Mydatatable = () => {
   );
 };
 
-export default Mydatatable;
+export default Mydatatable;

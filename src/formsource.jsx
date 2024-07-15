@@ -82,7 +82,7 @@ export const categoriesInputs = [
     id: "Name",
     label: "Name",
     type: "text",
-    placeholder: "Name",
+    placeholder: "Coffee",
   },
   
 ]
