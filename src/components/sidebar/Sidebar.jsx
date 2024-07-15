@@ -65,7 +65,7 @@ const Sidebar = () => {
       <li>
       <Link to="/categories">
         <li data-testid="categories">
-        <PersonIcon className="icon" /> 
+        <CategoryIcon className="icon" /> 
           <span>Categories</span>
         </li>
       </Link>
